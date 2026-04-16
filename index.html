@@ -1,431 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AIMS English Quiz</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:Arial,sans-serif;
-  background:#f3f4f6;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-  padding:20px;
-}
-.card{
-  background:#fff;
-  width:100%;
-  max-width:700px;
-  border-radius:18px;
-  padding:30px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
-}
-h1{
-  font-size:28px;
-  margin-bottom:10px;
-  color:#111827;
-}
-.sub{
-  color:#6b7280;
-  margin-bottom:20px;
-}
-.logo{
-  width:120px;
-  margin-bottom:15px;
-}
-input[type="text"]{
-  width:100%;
-  padding:12px 14px;
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  font-size:15px;
-  margin-bottom:20px;
-}
-.btn{
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:600;
-  transition:.2s;
-}
-.btn.primary{
-  background:#2563eb;
-  color:#fff;
-}
-.btn.primary:hover{
-  background:#1d4ed8;
-}
-.btn.secondary{
-  background:#e5e7eb;
-  color:#111827;
-}
-.btn.secondary:hover{
-  background:#d1d5db;
-}
-.progress-bar{
-  width:100%;
-  height:8px;
-  background:#e5e7eb;
-  border-radius:20px;
-  overflow:hidden;
-  margin-bottom:20px;
-}
-.progress-fill{
-  height:100%;
-  background:#2563eb;
-  width:0%;
-  transition:.3s;
-}
-.q-num{
-  color:#6b7280;
-  font-size:14px;
-  margin-bottom:10px;
-}
-.q-text{
-  font-size:18px;
-  font-weight:600;
-  margin-bottom:20px;
-  color:#111827;
-}
-.option{
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  padding:14px;
-  margin-bottom:12px;
-  cursor:pointer;
-  transition:.2s;
-}
-.option:hover{
-  background:#eff6ff;
-  border-color:#2563eb;
-}
-.option.selected{
-  background:#dbeafe;
-  border-color:#2563eb;
-}
-.nav{
-  display:flex;
-  justify-content:space-between;
-  margin-top:25px;
-}
-.score-wrap{
-  text-align:center;
-}
-.score-big{
-  font-size:60px;
-  font-weight:700;
-  color:#2563eb;
-}
-.score-sub{
-  margin-top:10px;
-  margin-bottom:10px;
-  color:#4b5563;
-}
-.btn-row{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-top:20px;
-}
-.review-item,
-.history-item{
-  border:1px solid #e5e7eb;
-  border-radius:10px;
-  padding:14px;
-  margin-bottom:12px;
-}
-.review-q{
-  font-weight:600;
-  margin-bottom:8px;
-}
-.tag{
-  display:inline-block;
-  padding:4px 10px;
-  border-radius:20px;
-  font-size:12px;
-  margin-bottom:8px;
-}
-.correct{
-  background:#dcfce7;
-  color:#166534;
-}
-.wrong{
-  background:#fee2e2;
-  color:#991b1b;
-}
-.hidden{
-  display:none;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIMS English Quiz</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,sans-serif;
+    }
+
+    body{
+      background:#f3f4f6;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:20px;
+    }
+
+    .card{
+      width:100%;
+      max-width:700px;
+      background:#fff;
+      border-radius:18px;
+      padding:30px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .center{
+      text-align:center;
+    }
+
+    .logo{
+      width:120px;
+      margin-bottom:15px;
+    }
+
+    h1{
+      font-size:28px;
+      color:#111827;
+      margin-bottom:8px;
+    }
+
+    .sub{
+      color:#6b7280;
+      margin-bottom:20px;
+    }
+
+    input{
+      width:100%;
+      padding:14px;
+      border:1px solid #d1d5db;
+      border-radius:10px;
+      margin-bottom:20px;
+      font-size:15px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:10px;
+      padding:12px 20px;
+      cursor:pointer;
+      font-size:15px;
+      font-weight:600;
+      transition:0.2s;
+    }
+
+    .btn.primary{
+      background:#2563eb;
+      color:#fff;
+    }
+
+    .btn.primary:hover{
+      background:#1d4ed8;
+    }
+
+    .btn.secondary{
+      background:#e5e7eb;
+      color:#111827;
+    }
+
+    .btn.secondary:hover{
+      background:#d1d5db;
+    }
+
+    .progress-bar{
+      width:100%;
+      height:8px;
+      background:#e5e7eb;
+      border-radius:999px;
+      overflow:hidden;
+      margin-bottom:20px;
+    }
+
+    .progress-fill{
+      height:100%;
+      background:#2563eb;
+      width:0%;
+      transition:0.3s;
+    }
+
+    .q-num{
+      color:#6b7280;
+      margin-bottom:8px;
+      font-size:14px;
+    }
+
+    .q-text{
+      font-size:20px;
+      font-weight:600;
+      margin-bottom:20px;
+      color:#111827;
+    }
+
+    .option{
+      border:1px solid #d1d5db;
+      border-radius:12px;
+      padding:14px;
+      margin-bottom:12px;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .option:hover{
+      background:#eff6ff;
+      border-color:#2563eb;
+    }
+
+    .option.selected{
+      background:#dbeafe;
+      border-color:#2563eb;
+    }
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      margin-top:20px;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .score-wrap{
+      text-align:center;
+    }
+
+    .score-big{
+      font-size:60px;
+      font-weight:700;
+      color:#2563eb;
+      margin-bottom:10px;
+    }
+
+    .score-sub{
+      color:#4b5563;
+      margin-bottom:10px;
+    }
+
+    .btn-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:20px;
+    }
+
+    .review-item{
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:15px;
+      margin-top:15px;
+    }
+
+    .review-q{
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+
+    .correct{
+      background:#dcfce7;
+      color:#166534;
+    }
+
+    .wrong{
+      background:#fee2e2;
+      color:#991b1b;
+    }
+
+    .history-dropdown{
+      margin-top:20px;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      background:#f9fafb;
+      padding:15px;
+    }
+
+    .history-item{
+      padding:10px 0;
+      border-bottom:1px solid #e5e7eb;
+    }
+
+    .history-item:last-child{
+      border-bottom:none;
+    }
+
+    .history-date{
+      font-size:12px;
+      color:#6b7280;
+      margin-top:4px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="card">
+  <div class="card">
 
-  <!-- Intro Screen -->
-  <div id="intro-screen">
-    <div style="text-align:center">
-      <img src="AIMS-English-Logo.png" alt="AIMS English Logo" class="logo">
-      <h1>AIMS English Quiz</h1>
-      <p class="sub">Test your English skills with 10 random questions</p>
+    <!-- Intro Screen -->
+    <div id="intro-screen">
+      <div class="center">
+        <img src="AIMS-English-Logo.png" alt="AIMS English Logo" class="logo">
+        <h1>AIMS English Quiz</h1>
+        <p class="sub">Test your English skills with 10 random questions</p>
+      </div>
+
+      <input type="text" id="user-name" placeholder="Enter your name">
+
+      <button class="btn primary" style="width:100%" onclick="beginQuiz()">
+        Start Quiz
+      </button>
     </div>
 
-    <input type="text" id="user-name" placeholder="Enter your name">
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="hidden">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
 
-    <button class="btn primary" style="width:100%" onclick="beginQuiz()">
-      Start Quiz
-    </button>
-  </div>
+      <div class="q-num" id="q-number"></div>
+      <div class="q-text" id="question-text"></div>
 
-  <!-- Quiz Screen -->
-  <div id="quiz-screen" class="hidden">
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
+      <div id="options-container"></div>
 
-    <p class="q-num" id="q-number"></p>
-    <div class="q-text" id="question-text"></div>
-    <div id="options-container"></div>
-
-    <div class="nav">
-      <button class="btn secondary" onclick="previousQuestion()">Previous</button>
-      <button class="btn primary" onclick="nextQuestion()">Next</button>
-    </div>
-  </div>
-
-  <!-- Result Screen -->
-  <div id="result-screen" class="hidden">
-    <div class="score-wrap">
-      <div class="score-big" id="final-score"></div>
-      <p class="score-sub" id="score-message"></p>
-      <p id="user-result" style="font-weight:600;margin-top:10px"></p>
-
-      <div class="btn-row">
-        <button class="btn primary" onclick="restartQuiz()">New Quiz</button>
-        <button class="btn secondary" onclick="toggleReview()">Review Answers</button>
-        <button class="btn secondary" onclick="toggleHistory()">Score History</button>
+      <div class="nav">
+        <button class="btn secondary" onclick="previousQuestion()">Previous</button>
+        <button class="btn primary" onclick="nextQuestion()">Next</button>
       </div>
     </div>
 
-    <div id="review-section" class="hidden" style="margin-top:20px"></div>
+    <!-- Result Screen -->
+    <div id="result-screen" class="hidden">
+      <div class="score-wrap">
+        <div class="score-big" id="final-score"></div>
+        <div class="score-sub" id="score-message"></div>
+        <div id="user-result" style="font-weight:600;margin-top:10px"></div>
 
-    <div id="history-section" class="hidden" style="margin-top:20px">
-      <h3 style="margin-bottom:15px">Score History</h3>
-      <div id="history-list"></div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-const questions = [
-  {
-    question: "Choose the correct sentence:",
-    options: ["She go to school.", "She goes to school.", "She going to school.", "She gone to school."],
-    answer: 1
-  },
-  {
-    question: "Which is a pronoun?",
-    options: ["Table", "She", "Run", "Happy"],
-    answer: 1
-  },
-  {
-    question: "Choose the correct article:",
-    options: ["a apple", "an apple", "the apple", "apple"],
-    answer: 1
-  },
-  {
-    question: "Choose correct tense:",
-    options: ["I have ate.", "I have eaten.", "I has eaten.", "I eating."],
-    answer: 1
-  },
-  {
-    question: "Identify the adjective:",
-    options: ["Quickly", "Beautiful", "Run", "Loudly"],
-    answer: 1
-  },
-  {
-    question: "Correct sentence:",
-    options: ["They is playing.", "They are playing.", "They am playing.", "They be playing."],
-    answer: 1
-  },
-  {
-    question: "Choose correct preposition:",
-    options: ["He is good in math.", "He is good at math.", "He is good on math.", "He is good by math."],
-    answer: 1
-  },
-  {
-    question: "Choose the correct modal:",
-    options: ["You must to go.", "You must go.", "You must going.", "You must goes."],
-    answer: 1
-  },
-  {
-    question: "Who wrote Hamlet?",
-    options: ["Jane Austen", "William Shakespeare", "Charles Dickens", "George Orwell"],
-    answer: 1
-  },
-  {
-    question: "What is the plural of child?",
-    options: ["Childs", "Children", "Childes", "Child"],
-    answer: 1
-  }
-];
-
-let currentQuestion = 0;
-let selectedAnswers = [];
-let currentUser = "";
-let scoreHistory = [];
-
-function beginQuiz() {
-  const nameInput = document.getElementById("user-name").value.trim();
-
-  if (nameInput === "") {
-    alert("Please enter your name.");
-    return;
-  }
-
-  currentUser = nameInput;
-  currentQuestion = 0;
-  selectedAnswers = [];
-
-  document.getElementById("intro-screen").classList.add("hidden");
-  document.getElementById("quiz-screen").classList.remove("hidden");
-
-  loadQuestion();
-}
-
-function loadQuestion() {
-  const q = questions[currentQuestion];
-
-  document.getElementById("q-number").textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
-  document.getElementById("question-text").textContent = q.question;
-  document.getElementById("progress-fill").style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
-
-  const optionsContainer = document.getElementById("options-container");
-  optionsContainer.innerHTML = "";
-
-  q.options.forEach((option, index) => {
-    const div = document.createElement("div");
-    div.className = "option";
-
-    if (selectedAnswers[currentQuestion] === index) {
-      div.classList.add("selected");
-    }
-
-    div.textContent = option;
-    div.onclick = () => {
-      selectedAnswers[currentQuestion] = index;
-      loadQuestion();
-    };
-
-    optionsContainer.appendChild(div);
-  });
-}
-
-function nextQuestion() {
-  if (currentQuestion < questions.length - 1) {
-    currentQuestion++;
-    loadQuestion();
-  } else {
-    showResult();
-  }
-}
-
-function previousQuestion() {
-  if (currentQuestion > 0) {
-    currentQuestion--;
-    loadQuestion();
-  }
-}
-
-function showResult() {
-  let score = 0;
-
-  questions.forEach((q, index) => {
-    if (selectedAnswers[index] === q.answer) {
-      score++;
-    }
-  });
-
-  scoreHistory.push({
-    name: currentUser,
-    score: score,
-    date: new Date().toLocaleString()
-  });
-
-  document.getElementById("quiz-screen").classList.add("hidden");
-  document.getElementById("result-screen").classList.remove("hidden");
-
-  document.getElementById("final-score").textContent = `${score}/${questions.length}`;
-  document.getElementById("score-message").textContent = score >= 8 ? "Excellent!" : score >= 5 ? "Good effort!" : "Keep practicing!";
-  document.getElementById("user-result").textContent = `${currentUser} scored ${score}/${questions.length} in the last result section.`;
-}
-
-function toggleReview() {
-  const section = document.getElementById("review-section");
-
-  if (!section.classList.contains("hidden")) {
-    section.classList.add("hidden");
-    return;
-  }
-
-  section.classList.remove("hidden");
-
-  section.innerHTML = questions.map((q, index) => {
-    const isCorrect = selectedAnswers[index] === q.answer;
-
-    return `
-      <div class="review-item">
-        <div class="review-q">${index + 1}. ${q.question}</div>
-        <div class="tag ${isCorrect ? 'correct' : 'wrong'}">
-          ${isCorrect ? 'Correct' : 'Wrong'}
+        <div class="btn-row">
+          <button class="btn primary" onclick="restartQuiz()">New Quiz</button>
+          <button class="btn secondary" onclick="toggleReview()">Review Answers</button>
+          <button class="btn secondary" onclick="toggleHistoryDropdown()">
+            Score Dashboard ▼
+          </button>
         </div>
-        <div>Correct Answer: <strong>${q.options[q.answer]}</strong></div>
-        <div>Your Answer: <strong>${selectedAnswers[index] !== undefined ? q.options[selectedAnswers[index]] : 'Not Answered'}</strong></div>
       </div>
-    `;
-  }).join("");
-}
 
-function toggleHistory() {
-  const section = document.getElementById("history-section");
-  const historyList = document.getElementById("history-list");
+      <div id="review-section" class="hidden"></div>
 
-  if (!section.classList.contains("hidden")) {
-    section.classList.add("hidden");
-    return;
-  }
-
-  section.classList.remove("hidden");
-
-  if (scoreHistory.length === 0) {
-    historyList.innerHTML = "<p>No score history available.</p>";
-    return;
-  }
-
-  historyList.innerHTML = scoreHistory.slice().reverse().map((item, index) => `
-    <div class="history-item">
-      <strong>${index + 1}. ${item.name}</strong><br>
-      Score: ${item.score}/10<br>
-      Date: ${item.date}
+      <div id="history-dropdown" class="history-dropdown hidden">
+        <div id="history-list"></div>
+      </div>
     </div>
-  `).join("");
-}
 
-function restartQuiz() {
-  document.getElementById("result-screen").classList.add("hidden");
-  document.getElementById("review-section").classList.add("hidden");
-  document.getElementById("history-section").classList.add("hidden");
-  document.getElementById("intro-screen").classList.remove("hidden");
-  document.getElementById("user-name").value = "";
-}
-</script>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Choose the correct sentence:",
+        options: ["She go to school.", "She goes to school.", "She going to school.", "She gone to school."],
+        answer: 1
+      },
+      {
+        question: "Which is a pronoun?",
+        options: ["Table", "She", "Run", "Happy"],
+        answer: 1
+      },
+      {
+        question: "Choose the correct article:",
+        options: ["a apple", "an apple", "the apple", "apple"],
+        answer: 1
+      },
+      {
+        question: "Choose correct tense:",
+        options: ["I have ate.", "I have eaten.", "I has eaten.", "I eating."],
+        answer: 1
+      },
+      {
+        question: "Identify the adjective:",
+        options: ["Quickly", "Beautiful", "Run", "Loudly"],
+        answer: 1
+      },
+      {
+        question: "Correct sentence:",
+        options: ["They is playing.", "They are playing.", "They am playing.", "They be playing."],
+        answer: 1
+      },
+      {
+        question: "Choose correct preposition:",
+        options: ["He is good in math.", "He is good at math.", "He is good on math.", "He is good by math."],
+        answer: 1
+      },
+      {
+        question: "Choose the correct modal:",
+        options: ["You must to go.", "You must go.", "You must going.", "You must goes."],
+        answer: 1
+      },
+      {
+        question: "Who wrote Hamlet?",
+        options: ["Jane Austen", "William Shakespeare", "Charles Dickens", "George Orwell"],
+        answer: 1
+      },
+      {
+        question: "What is the plural of child?",
+        options: ["Childs", "Children", "Childes", "Child"],
+        answer: 1
+      }
+    ];
+
+    let currentQuestion = 0;
+    let selectedAnswers = [];
+    let currentUser = "";
+    let scoreHistory = [];
+
+    function beginQuiz() {
+      const name = document.getElementById("user-name").value.trim();
+
+      if (name === "") {
+        alert("Please enter your name.");
+        return;
+      }
+
+      currentUser = name;
+      currentQuestion = 0;
+      selectedAnswers = [];
+
+      document.getElementById("intro-screen").classList.add("hidden");
+      document.getElementById("quiz-screen").classList.remove("hidden");
+
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+
+      document.getElementById("q-number").textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+      document.getElementById("question-text").textContent = q.question;
+
+      document.getElementById("progress-fill").style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+      const optionsContainer = document.getElementById("options-container");
+      optionsContainer.innerHTML = "";
+
+      q.options.forEach((option, index) => {
+        const div = document.createElement("div");
+        div.className = "option";
+
+        if (selectedAnswers[currentQuestion] === index) {
+          div.classList.add("selected");
+        }
+
+        div.textContent = option;
+
+        div.onclick = () => {
+          selectedAnswers[currentQuestion] = index;
+          loadQuestion();
+        };
+
+        optionsContainer.appendChild(div);
+      });
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function previousQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        loadQuestion();
+      }
+    }
+
+    function showResult() {
+      let score = 0;
+
+      questions.forEach((q, index) => {
+        if (selectedAnswers[index] === q.answer) {
+          score++;
+        }
+      });
+
+      scoreHistory.push({
+        name: currentUser,
+        score: score,
+        date: new Date().toLocaleString()
+      });
+
+      document.getElementById("quiz-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.remove("hidden");
+
+      document.getElementById("final-score").textContent = `${score}/${questions.length}`;
+
+      if (score >= 8) {
+        document.getElementById("score-message").textContent = "Excellent!";
+      } else if (score >= 5) {
+        document.getElementById("score-message").textContent = "Good effort!";
+      } else {
+        document.getElementById("score-message").textContent = "Keep practicing!";
+      }
+
+      document.getElementById("user-result").textContent =
+        `${currentUser} scored ${score}/${questions.length} in the last result section.`;
+    }
+
+    function toggleReview() {
+      const reviewSection = document.getElementById("review-section");
+
+      if (!reviewSection.classList.contains("hidden")) {
+        reviewSection.classList.add("hidden");
+        return;
+      }
+
+      reviewSection.classList.remove("hidden");
+
+      reviewSection.innerHTML = questions.map((q, index) => {
+        const isCorrect = selectedAnswers[index] === q.answer;
+
+        return `
+          <div class="review-item">
+            <div class="review-q">${index + 1}. ${q.question}</div>
+            <div class="tag ${isCorrect ? 'correct' : 'wrong'}">
+              ${isCorrect ? 'Correct' : 'Wrong'}
+            </div>
+            <div>Correct Answer: <strong>${q.options[q.answer]}</strong></div>
+            <div>Your Answer: <strong>${selectedAnswers[index] !== undefined ? q.options[selectedAnswers[index]] : 'Not Answered'}</strong></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function toggleHistoryDropdown() {
+      const dropdown = document.getElementById("history-dropdown");
+      const historyList = document.getElementById("history-list");
+
+      dropdown.classList.toggle("hidden");
+
+      if (scoreHistory.length === 0) {
+        historyList.innerHTML = "<p>No score history available yet.</p>";
+        return;
+      }
+
+      historyList.innerHTML = scoreHistory
+        .slice()
+        .reverse()
+        .map((item, index) => `
+          <div class="history-item">
+            <strong>${item.name}</strong><br>
+            Score: ${item.score}/10
+            <div class="history-date">${item.date}</div>
+          </div>
+        `)
+        .join("");
+    }
+
+    function restartQuiz() {
+      document.getElementById("result-screen").classList.add("hidden");
+      document.getElementById("review-section").classList.add("hidden");
+      document.getElementById("history-dropdown").classList.add("hidden");
+      document.getElementById("intro-screen").classList.remove("hidden");
+      document.getElementById("user-name").value = "";
+    }
+  </script>
 
 </body>
 </html>
