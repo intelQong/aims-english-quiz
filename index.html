@@ -347,7 +347,7 @@
       <div class="center">
         <img src="AIMS-English-Logo.png" alt="AIMS English Logo" class="logo" onerror="this.style.display='none'">
         <h1>AIMS English Quiz</h1>
-        <p class="sub">10 questions, 2 minute total!</p>
+        <p class="sub">10 questions, 75 seconds total!</p>
       </div>
 
       <input type="text" id="user-name" placeholder="Enter your name" maxlength="40">
@@ -367,7 +367,7 @@
       </div>
 
       <div class="intro-note">
-        Quiz rules: 2 minute for the full quiz, no going back to previous questions, and 3 difficult special questions are mixed into every attempt.
+        Quiz rules: 75 seconds for the full quiz, no going back to previous questions, and 3 difficult special questions are mixed into every attempt.
       </div>
 
       <div class="credit">Developed By Md Mahmudul Hoque Khan</div>
@@ -377,7 +377,7 @@
       <div class="status-bar">
         <span id="answered-count">Answered 0/10</span>
         <span id="quiz-user"></span>
-        <span class="timer-badge" id="timer-display">Time Left 02:00</span>
+        <span class="timer-badge" id="timer-display">Time Left 01:15</span>
       </div>
 
       <div class="progress-bar">
@@ -429,7 +429,7 @@
     const STORAGE_KEY = "aimsEnglishQuizHistory";
     const QUIZ_SIZE = 10;
     const SPECIAL_PER_QUIZ = 3;
-    const TIMER_SECONDS = 120;
+    const TIMER_SECONDS = 75;
 
     const regularSetA = [
       ["Choose the correct sentence:", "She go to school.|She goes to school.|She going to school.|She gone to school.", 1],
@@ -543,33 +543,32 @@
       ["He is taller ___ his cousin.", "to|than|from|with", 1]
     ];
 
-  const specialRecords = [
-  ["Choose the correct inversion:", "Seldom I have seen such discipline.|Seldom have I seen such discipline.|Seldom I saw such discipline.|Seldom did have I seen such discipline.", 1],
-  ["Complete the sentence correctly: No sooner ___ the announcement than the phones began ringing.", "did they make|they made|had they made|have they made", 2],
-  ["Choose the correct subjunctive form:", "The judge demanded that the witness answers immediately.|The judge demanded that the witness answer immediately.|The judge demanded that the witness answered immediately.|The judge demanded that the witness answering immediately.", 1],
-  ["Complete the sentence correctly: Only after the manuscript was published ___ how groundbreaking it was.", "critics realized|did critics realize|critics had realized|have critics realized", 1],
-  ["Choose the best option: The proposal is worth ___ despite the risks.", "consider|to consider|considering|considered", 2],
-  ["Choose the correct sentence:", "Each of the reports, together with the appendix, are on the chair.|Each of the reports, together with the appendix, is on the chair.|Each of the reports, together with the appendix, were on the chair.|Each of the reports, together with the appendix, have been on the chair.", 1],
-  ["Complete the sentence correctly: She would sooner resign than ___ the figures.", "falsified|to falsify|falsify|falsifying", 2],
-  ["Choose the correct inversion:", "So complex the case was that even the experts disagreed.|So complex was the case that even the experts disagreed.|So was complex the case that even the experts disagreed.|So complex the case had been that even the experts disagreed.", 1],
-  ["Complete the sentence correctly: Not until the data were rechecked ___ the error.", "we detected|did we detect|have we detected|we had detected", 1],
-  ["Choose the best option: He talks as though he ___ everything.", "knows|knew|has known|will know", 1],
-  ["Choose the correct sentence:", "The committee recommended that the policy is revised immediately.|The committee recommended that the policy was revised immediately.|The committee recommended that the policy be revised immediately.|The committee recommended that the policy revised immediately.", 2],
-  ["Choose the best word: The professor's comments were so ___ that several interpretations remained possible.", "equivocal|transparent|definitive|literal", 0],
-
-  ["Choose the correct inversion:", "Rarely we have witnessed such dedication.|Rarely have we witnessed such dedication.|Rarely did we witnessed such dedication.|Rarely had we witness such dedication.", 1],
-  ["Complete the sentence correctly: Hardly ___ the meeting started when the fire alarm rang.", "had|did|has|was", 0],
-  ["Choose the correct sentence:", "It is essential that every applicant submits the form today.|It is essential that every applicant submit the form today.|It is essential that every applicant submitted the form today.|It is essential that every applicant submitting the form today.", 1],
-  ["Complete the sentence correctly: Under no circumstances ___ confidential information to the media.", "you should reveal|should you reveal|you revealed|did you revealed", 1],
-  ["Choose the best option: The manager objected to ___ the deadline without consultation.", "extend|extending|extended|be extended", 1],
-  ["Choose the correct sentence:", "Scarcely had they reached the station when the train left.|Scarcely they had reached the station when the train left.|Scarcely had they reach the station when the train left.|Scarcely they reached the station when the train left.", 0],
-  ["Complete the sentence correctly: Were the company ___ more transparent, public trust would improve.", "be|being|to be|been", 2],
-  ["Choose the best word: His explanation was so ___ that nobody could understand his actual point.", "lucid|ambiguous|precise|evident", 1],
-  ["Choose the correct sentence:", "Not only did she finish the report but she also presented it.|Not only she finished the report but also presented it.|Not only did she finish the report but she also presented it.|Not only she did finish the report but she also presented it.", 2],
-  ["Complete the sentence correctly: Little ___ that the company had already made its decision.", "they knew|did they know|they had known|have they known", 1],
-  ["Choose the correct subjunctive form:", "The doctor advised that he rests for two weeks.|The doctor advised that he rest for two weeks.|The doctor advised that he rested for two weeks.|The doctor advised that he resting for two weeks.", 1],
-  ["Choose the best option: The contract was deemed null and void because several clauses were ___.", "binding|invalid|coherent|consistent", 1]
-];
+    const specialRecords = [
+      ["Choose the correct inversion:", "Seldom I have seen such discipline.|Seldom have I seen such discipline.|Seldom I saw such discipline.|Seldom did have I seen such discipline.", 1],
+      ["Complete the sentence correctly: No sooner ___ the announcement than the phones began ringing.", "did they make|they made|had they made|have they made", 2],
+      ["Choose the correct subjunctive form:", "The judge demanded that the witness answers immediately.|The judge demanded that the witness answer immediately.|The judge demanded that the witness answered immediately.|The judge demanded that the witness answering immediately.", 1],
+      ["Complete the sentence correctly: Only after the manuscript was published ___ how groundbreaking it was.", "critics realized|did critics realize|critics had realized|have critics realized", 1],
+      ["Choose the best option: The proposal is worth ___ despite the risks.", "consider|to consider|considering|considered", 2],
+      ["Choose the correct sentence:", "Each of the reports, together with the appendix, are on the chair.|Each of the reports, together with the appendix, is on the chair.|Each of the reports, together with the appendix, were on the chair.|Each of the reports, together with the appendix, have been on the chair.", 1],
+      ["Complete the sentence correctly: She would sooner resign than ___ the figures.", "falsified|to falsify|falsify|falsifying", 2],
+      ["Choose the correct inversion:", "So complex the case was that even the experts disagreed.|So complex was the case that even the experts disagreed.|So was complex the case that even the experts disagreed.|So complex the case had been that even the experts disagreed.", 1],
+      ["Complete the sentence correctly: Not until the data were rechecked ___ the error.", "we detected|did we detect|have we detected|we had detected", 1],
+      ["Choose the best option: He talks as though he ___ everything.", "knows|knew|has known|will know", 1],
+      ["Choose the correct sentence:", "The committee recommended that the policy is revised immediately.|The committee recommended that the policy was revised immediately.|The committee recommended that the policy be revised immediately.|The committee recommended that the policy revised immediately.", 2],
+      ["Choose the best word: The professor's comments were so ___ that several interpretations remained possible.", "equivocal|transparent|definitive|literal", 0],
+      ["Choose the correct inversion:", "Rarely we have witnessed such dedication.|Rarely have we witnessed such dedication.|Rarely did we witnessed such dedication.|Rarely had we witness such dedication.", 1],
+      ["Complete the sentence correctly: Hardly ___ the meeting started when the fire alarm rang.", "had|did|has|was", 0],
+      ["Choose the correct sentence:", "It is essential that every applicant submits the form today.|It is essential that every applicant submit the form today.|It is essential that every applicant submitted the form today.|It is essential that every applicant submitting the form today.", 1],
+      ["Complete the sentence correctly: Under no circumstances ___ confidential information to the media.", "you should reveal|should you reveal|you revealed|did you revealed", 1],
+      ["Choose the best option: The manager objected to ___ the deadline without consultation.", "extend|extending|extended|be extended", 1],
+      ["Choose the correct sentence:", "Scarcely had they reached the station when the train left.|Scarcely they had reached the station when the train left.|Scarcely had they reach the station when the train left.|Scarcely they reached the station when the train left.", 0],
+      ["Complete the sentence correctly: Were the company ___ more transparent, public trust would improve.", "be|being|to be|been", 2],
+      ["Choose the best word: His explanation was so ___ that nobody could understand his actual point.", "lucid|ambiguous|precise|evident", 1],
+      ["Choose the correct sentence:", "Not only did she finish the report but she also presented it.|Not only she finished the report but also presented it.|Not only did she finish the report but she also presented it.|Not only she did finish the report but she also presented it.", 2],
+      ["Complete the sentence correctly: Little ___ that the company had already made its decision.", "they knew|did they know|they had known|have they known", 1],
+      ["Choose the correct subjunctive form:", "The doctor advised that he rests for two weeks.|The doctor advised that he rest for two weeks.|The doctor advised that he rested for two weeks.|The doctor advised that he resting for two weeks.", 1],
+      ["Choose the best option: The contract was deemed null and void because several clauses were ___.", "binding|invalid|coherent|consistent", 1]
+    ];
 
     function buildPool(records, difficulty) {
       return records.map(([question, optionString, answer]) => ({
@@ -600,7 +599,6 @@
         const storedHistory = localStorage.getItem(STORAGE_KEY);
         return storedHistory ? JSON.parse(storedHistory) : [];
       } catch (error) {
-        console.error("Unable to load score history:", error);
         return [];
       }
     }
@@ -608,19 +606,15 @@
     function saveHistory() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(scoreHistory));
-      } catch (error) {
-        console.error("Unable to save score history:", error);
-      }
+      } catch (error) {}
     }
 
     function shuffleArray(items) {
       const shuffled = [...items];
-
       for (let index = shuffled.length - 1; index > 0; index--) {
         const swapIndex = Math.floor(Math.random() * (index + 1));
         [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
       }
-
       return shuffled;
     }
 
@@ -654,7 +648,6 @@
 
       timerInterval = setInterval(() => {
         timeRemaining -= 1;
-
         if (timeRemaining <= 0) {
           timeRemaining = 0;
           updateTimerDisplay();
@@ -662,18 +655,13 @@
           showResult(true);
           return;
         }
-
         updateTimerDisplay();
       }, 1000);
     }
 
     function beginQuiz() {
       const name = document.getElementById("user-name").value.trim();
-
-      if (name === "") {
-        alert("Please enter your name.");
-        return;
-      }
+      if (name === "") { alert("Please enter your name."); return; }
 
       currentUser = name;
       currentQuestion = 0;
@@ -695,16 +683,11 @@
 
     function loadQuestion() {
       const q = questions[currentQuestion];
-
-      document.getElementById("q-number").textContent =
-        `Question ${currentQuestion + 1} of ${questions.length}`;
+      document.getElementById("q-number").textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
       document.getElementById("question-text").textContent = q.question;
-      document.getElementById("progress-fill").style.width =
-        `${((currentQuestion + 1) / questions.length) * 100}%`;
-      document.getElementById("answered-count").textContent =
-        `Answered ${answeredCount()}/${questions.length}`;
-      document.getElementById("next-btn").textContent =
-        currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next";
+      document.getElementById("progress-fill").style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+      document.getElementById("answered-count").textContent = `Answered ${answeredCount()}/${questions.length}`;
+      document.getElementById("next-btn").textContent = currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next";
 
       const optionsContainer = document.getElementById("options-container");
       optionsContainer.innerHTML = "";
@@ -713,18 +696,13 @@
         const button = document.createElement("button");
         button.type = "button";
         button.className = "option";
-
-        if (selectedAnswers[currentQuestion] === index) {
-          button.classList.add("selected");
-        }
-
+        if (selectedAnswers[currentQuestion] === index) button.classList.add("selected");
         button.textContent = option;
         button.onclick = () => {
           selectedAnswers[currentQuestion] = index;
           document.getElementById("helper-text").textContent = "";
           loadQuestion();
         };
-
         optionsContainer.appendChild(button);
       });
     }
@@ -734,7 +712,6 @@
         document.getElementById("helper-text").textContent = "Please select an answer before continuing.";
         return;
       }
-
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         loadQuestion();
@@ -745,13 +722,9 @@
 
     function calculateScore() {
       let score = 0;
-
       questions.forEach((question, index) => {
-        if (selectedAnswers[index] === question.answer) {
-          score++;
-        }
+        if (selectedAnswers[index] === question.answer) score++;
       });
-
       return score;
     }
 
@@ -759,13 +732,10 @@
       document.getElementById("review-section").innerHTML = questions.map((question, index) => {
         const isCorrect = selectedAnswers[index] === question.answer;
         const selectedAnswer = selectedAnswers[index];
-
         return `
           <div class="review-item">
             <div class="review-q">${index + 1}. ${question.question}</div>
-            <div class="tag ${isCorrect ? "correct" : "wrong"}">
-              ${isCorrect ? "✅ Correct" : "❌ Wrong"}
-            </div>
+            <div class="tag ${isCorrect ? "correct" : "wrong"}">${isCorrect ? "✅ Correct" : "❌ Wrong"}</div>
             <div style="margin-top:10px">Correct Answer: <strong>${question.options[question.answer]}</strong></div>
             <div style="margin-top:6px">Your Answer: <strong>${selectedAnswer !== undefined ? question.options[selectedAnswer] : "Not Answered"}</strong></div>
           </div>
@@ -775,36 +745,23 @@
 
     function renderHistory(targetId) {
       const historyList = document.getElementById(targetId);
-
-      if (scoreHistory.length === 0) {
-        historyList.innerHTML = "<p>No score history available yet.</p>";
-        return;
-      }
-
-      historyList.innerHTML = scoreHistory
-        .slice()
-        .reverse()
-        .map((item) => `
-          <div class="history-item">
-            <strong>${item.name}</strong><br>
-            Score: ${item.score}/${item.total}
-            <div class="history-date">${item.date}</div>
-          </div>
-        `)
-        .join("");
+      if (scoreHistory.length === 0) { historyList.innerHTML = "<p>No score history available yet.</p>"; return; }
+      historyList.innerHTML = scoreHistory.slice().reverse().map((item) => `
+        <div class="history-item">
+          <strong>${item.name}</strong><br>
+          Score: ${item.score}/${item.total}
+          <div class="history-date">${item.date}</div>
+        </div>
+      `).join("");
     }
 
     function toggleDropdown(dropdownId, listId, buttonId) {
       const dropdown = document.getElementById(dropdownId);
       const button = document.getElementById(buttonId);
       const isOpening = dropdown.classList.contains("hidden");
-
       dropdown.classList.toggle("hidden");
       button.textContent = isOpening ? "Score Dashboard ^" : "Score Dashboard v";
-
-      if (isOpening) {
-        renderHistory(listId);
-      }
+      if (isOpening) renderHistory(listId);
     }
 
     function toggleIntroHistoryDropdown() {
@@ -816,21 +773,12 @@
     }
 
     function showResult(timeExpired) {
-      if (quizFinished) {
-        return;
-      }
-
+      if (quizFinished) return;
       quizFinished = true;
       clearInterval(timerInterval);
 
       const score = calculateScore();
-
-      scoreHistory.push({
-        name: currentUser,
-        score,
-        total: questions.length,
-        date: new Date().toLocaleString()
-      });
+      scoreHistory.push({ name: currentUser, score, total: questions.length, date: new Date().toLocaleString() });
       saveHistory();
 
       document.getElementById("quiz-screen").classList.add("hidden");
@@ -847,10 +795,9 @@
         document.getElementById("score-message").textContent = "Keep practicing. These questions are intentionally tough.";
       }
 
-      document.getElementById("user-result").textContent =
-        `${currentUser} scored ${score}/${questions.length} on this attempt.`;
+      document.getElementById("user-result").textContent = `${currentUser} scored ${score}/${questions.length} on this attempt.`;
       document.getElementById("result-note").textContent = timeExpired
-        ? "The quiz auto-submitted when the 1-minute timer ended. Unanswered questions were counted as incorrect."
+        ? "The quiz auto-submitted when the 75-second timer ended. Unanswered questions were counted as incorrect."
         : "All correct answers are shown below. Each attempt includes 7 regular questions and 3 special challenge questions.";
       document.getElementById("review-section").classList.remove("hidden");
       document.getElementById("review-toggle-btn").textContent = "Hide Answers";
@@ -866,14 +813,12 @@
       const reviewSection = document.getElementById("review-section");
       const button = document.getElementById("review-toggle-btn");
       const isHidden = reviewSection.classList.contains("hidden");
-
       reviewSection.classList.toggle("hidden");
       button.textContent = isHidden ? "Hide Answers" : "Show Answers";
     }
 
     function restartQuiz() {
       clearInterval(timerInterval);
-
       currentQuestion = 0;
       selectedAnswers = [];
       currentUser = "";
@@ -892,7 +837,7 @@
       document.getElementById("result-history-toggle-btn").textContent = "Score Dashboard v";
       document.getElementById("review-section").classList.remove("hidden");
       document.getElementById("review-toggle-btn").textContent = "Hide Answers";
-      document.getElementById("timer-display").textContent = "Time Left 01:00";
+      document.getElementById("timer-display").textContent = "Time Left 01:15";
       document.getElementById("timer-display").classList.remove("warning");
       document.getElementById("progress-fill").style.width = "0%";
       renderHistory("intro-history-list");
