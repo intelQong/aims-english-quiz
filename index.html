@@ -347,7 +347,7 @@
       <div class="center">
         <img src="AIMS-English-Logo.png" alt="AIMS English Logo" class="logo" onerror="this.style.display='none'">
         <h1>AIMS English Quiz</h1>
-        <p class="sub">10 questions, 1 minute total!</p>
+        <p class="sub">10 questions, 2 minute total!</p>
       </div>
 
       <input type="text" id="user-name" placeholder="Enter your name" maxlength="40">
@@ -367,7 +367,7 @@
       </div>
 
       <div class="intro-note">
-        Quiz rules: 1 minute for the full quiz, no going back to previous questions, and 3 difficult special questions are mixed into every attempt.
+        Quiz rules: 2 minute for the full quiz, no going back to previous questions, and 3 difficult special questions are mixed into every attempt.
       </div>
 
       <div class="credit">Developed By Md Mahmudul Hoque Khan</div>
@@ -377,7 +377,7 @@
       <div class="status-bar">
         <span id="answered-count">Answered 0/10</span>
         <span id="quiz-user"></span>
-        <span class="timer-badge" id="timer-display">Time Left 01:00</span>
+        <span class="timer-badge" id="timer-display">Time Left 02:00</span>
       </div>
 
       <div class="progress-bar">
@@ -429,7 +429,7 @@
     const STORAGE_KEY = "aimsEnglishQuizHistory";
     const QUIZ_SIZE = 10;
     const SPECIAL_PER_QUIZ = 3;
-    const TIMER_SECONDS = 60;
+    const TIMER_SECONDS = 120;
 
     const regularSetA = [
       ["Choose the correct sentence:", "She go to school.|She goes to school.|She going to school.|She gone to school.", 1],
