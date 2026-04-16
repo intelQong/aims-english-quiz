@@ -1,1 +1,1 @@
-fair.intelqong.link
+```fair.intelqong.link```
