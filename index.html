@@ -6,261 +6,412 @@
   <title>AIMS English Quiz</title>
 
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial,sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
     }
 
-    body{
-      background:#f3f4f6;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
-      padding:20px;
+    body {
+      background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 45%, #e0f2fe 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: #111827;
     }
 
-    .card{
-      width:100%;
-      max-width:700px;
-      background:#fff;
-      border-radius:18px;
-      padding:30px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    .card {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 22px;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+      backdrop-filter: blur(8px);
     }
 
-    .center{
-      text-align:center;
+    .center {
+      text-align: center;
     }
 
-    .logo{
-      width:120px;
-      margin-bottom:15px;
+    .logo {
+      width: 120px;
+      margin-bottom: 15px;
+      object-fit: contain;
     }
 
-    h1{
-      font-size:28px;
-      color:#111827;
-      margin-bottom:8px;
+    h1 {
+      font-size: 30px;
+      color: #0f172a;
+      margin-bottom: 8px;
     }
 
-    .sub{
-      color:#6b7280;
-      margin-bottom:20px;
+    .sub {
+      color: #64748b;
+      margin-bottom: 22px;
+      line-height: 1.5;
     }
 
-    input{
-      width:100%;
-      padding:14px;
-      border:1px solid #d1d5db;
-      border-radius:10px;
-      margin-bottom:20px;
-      font-size:15px;
+    .intro-note,
+    .quiz-note,
+    .result-note {
+      margin-top: 16px;
+      border: 1px solid #dbeafe;
+      border-radius: 14px;
+      background: #eff6ff;
+      padding: 14px;
+      color: #1e3a8a;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    .btn{
-      border:none;
-      border-radius:10px;
-      padding:12px 20px;
-      cursor:pointer;
-      font-size:15px;
-      font-weight:600;
-      transition:0.2s;
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .btn.primary{
-      background:#2563eb;
-      color:#fff;
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
     }
 
-    .btn.primary:hover{
-      background:#1d4ed8;
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.2s ease;
     }
 
-    .btn.secondary{
-      background:#e5e7eb;
-      color:#111827;
+    .btn.primary {
+      background: #2563eb;
+      color: #fff;
     }
 
-    .btn.secondary:hover{
-      background:#d1d5db;
+    .btn.primary:hover {
+      background: #1d4ed8;
     }
 
-    .progress-bar{
-      width:100%;
-      height:8px;
-      background:#e5e7eb;
-      border-radius:999px;
-      overflow:hidden;
-      margin-bottom:20px;
+    .btn.secondary {
+      background: #e2e8f0;
+      color: #0f172a;
     }
 
-    .progress-fill{
-      height:100%;
-      background:#2563eb;
-      width:0%;
-      transition:0.3s;
+    .btn.secondary:hover {
+      background: #cbd5e1;
     }
 
-    .q-num{
-      color:#6b7280;
-      margin-bottom:8px;
-      font-size:14px;
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
     }
 
-    .q-text{
-      font-size:20px;
-      font-weight:600;
-      margin-bottom:20px;
-      color:#111827;
+    .full-width {
+      width: 100%;
     }
 
-    .option{
-      border:1px solid #d1d5db;
-      border-radius:12px;
-      padding:14px;
-      margin-bottom:12px;
-      cursor:pointer;
-      transition:0.2s;
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      color: #64748b;
+      font-size: 14px;
+      flex-wrap: wrap;
     }
 
-    .option:hover{
-      background:#eff6ff;
-      border-color:#2563eb;
+    .timer-badge {
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-weight: 700;
+      min-width: 118px;
+      text-align: center;
     }
 
-    .option.selected{
-      background:#dbeafe;
-      border-color:#2563eb;
+    .timer-badge.warning {
+      background: #fee2e2;
+      color: #b91c1c;
     }
 
-    .nav{
-      display:flex;
-      justify-content:space-between;
-      margin-top:20px;
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 22px;
     }
 
-    .hidden{
-      display:none;
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb 0%, #0ea5e9 100%);
+      width: 0%;
+      transition: width 0.25s ease;
     }
 
-    .score-wrap{
-      text-align:center;
+    .q-num {
+      color: #64748b;
+      margin-bottom: 8px;
+      font-size: 14px;
     }
 
-    .score-big{
-      font-size:60px;
-      font-weight:700;
-      color:#2563eb;
-      margin-bottom:10px;
+    .q-text {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #0f172a;
+      line-height: 1.35;
     }
 
-    .score-sub{
-      color:#4b5563;
-      margin-bottom:10px;
+    .question-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
 
-    .btn-row{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:20px;
+    .meta-chip {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #e2e8f0;
+      color: #334155;
     }
 
-    .review-item{
-      border:1px solid #e5e7eb;
-      border-radius:12px;
-      padding:15px;
-      margin-top:15px;
+    .meta-chip.special {
+      background: #fee2e2;
+      color: #991b1b;
     }
 
-    .review-q{
-      font-weight:600;
-      margin-bottom:10px;
+    .option {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      background: #fff;
+      text-align: left;
+      color: #0f172a;
+      font-size: 15px;
     }
 
-    .tag{
-      display:inline-block;
-      padding:4px 10px;
-      border-radius:999px;
-      font-size:12px;
-      margin-bottom:10px;
+    .option:hover,
+    .option:focus-visible {
+      background: #eff6ff;
+      border-color: #2563eb;
+      outline: none;
     }
 
-    .correct{
-      background:#dcfce7;
-      color:#166534;
+    .option.selected {
+      background: #dbeafe;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
     }
 
-    .wrong{
-      background:#fee2e2;
-      color:#991b1b;
+    .helper-text {
+      min-height: 20px;
+      color: #b45309;
+      font-size: 14px;
+      margin-top: 6px;
     }
 
-    .history-dropdown{
-      margin-top:20px;
-      border:1px solid #e5e7eb;
-      border-radius:12px;
-      background:#f9fafb;
-      padding:15px;
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 20px;
     }
 
-    .history-item{
-      padding:10px 0;
-      border-bottom:1px solid #e5e7eb;
+    .hidden {
+      display: none;
     }
 
-    .history-item:last-child{
-      border-bottom:none;
+    .score-wrap {
+      text-align: center;
     }
 
-    .history-date{
-      font-size:12px;
-      color:#6b7280;
-      margin-top:4px;
+    .score-big {
+      font-size: 60px;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+
+    .score-sub {
+      color: #475569;
+      margin-bottom: 10px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .review-title {
+      margin-top: 26px;
+      margin-bottom: 14px;
+      font-size: 20px;
+      color: #0f172a;
+    }
+
+    .review-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 15px;
+      margin-top: 15px;
+      background: #fff;
+    }
+
+    .review-q {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .correct {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .history-dropdown {
+      margin-top: 20px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #f8fafc;
+      padding: 15px;
+    }
+
+    .history-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .history-date {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 24px 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .q-text {
+        font-size: 20px;
+      }
+
+      .nav {
+        flex-direction: column;
+      }
+
+      .nav .btn,
+      .btn-row .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-
   <div class="card">
-
-    <!-- Intro Screen -->
     <div id="intro-screen">
       <div class="center">
-        <img src="AIMS-English-Logo.png" alt="AIMS English Logo" class="logo">
+        <img src="AIMS-English-Logo.png" alt="AIMS English Logo" class="logo" onerror="this.style.display='none'">
         <h1>AIMS English Quiz</h1>
-        <p class="sub">Test your English skills with 10 random questions</p>
+        <p class="sub">10 questions, 1 minute total, and 3 special challenge questions in every attempt.</p>
       </div>
 
-      <input type="text" id="user-name" placeholder="Enter your name">
+      <input type="text" id="user-name" placeholder="Enter your name" maxlength="40">
 
-      <button class="btn primary" style="width:100%" onclick="beginQuiz()">
+      <button class="btn primary full-width" type="button" onclick="beginQuiz()">
         Start Quiz
       </button>
+
+      <div class="btn-row">
+        <button class="btn secondary" id="intro-history-toggle-btn" type="button" onclick="toggleIntroHistoryDropdown()">
+          Score Dashboard v
+        </button>
+      </div>
+
+      <div class="history-dropdown hidden" id="intro-history-dropdown">
+        <div id="intro-history-list"></div>
+      </div>
+
+      <div class="intro-note">
+        Quiz rules: 1 minute for the full quiz, no going back to previous questions, and 3 difficult special questions are mixed into every attempt.
+      </div>
     </div>
 
-    <!-- Quiz Screen -->
     <div id="quiz-screen" class="hidden">
+      <div class="status-bar">
+        <span id="answered-count">Answered 0/10</span>
+        <span id="quiz-user"></span>
+        <span class="timer-badge" id="timer-display">Time Left 01:00</span>
+      </div>
+
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
 
       <div class="q-num" id="q-number"></div>
       <div class="q-text" id="question-text"></div>
+      <div class="question-badges" id="question-badges"></div>
 
       <div id="options-container"></div>
+      <div class="helper-text" id="helper-text"></div>
+
+      <div class="quiz-note">
+        Once you click Next, that question is locked and you cannot return to change it.
+      </div>
 
       <div class="nav">
-        <button class="btn secondary" onclick="previousQuestion()">Previous</button>
-        <button class="btn primary" onclick="nextQuestion()">Next</button>
+        <button class="btn primary" id="next-btn" type="button" onclick="nextQuestion()">Next</button>
       </div>
     </div>
 
-    <!-- Result Screen -->
     <div id="result-screen" class="hidden">
       <div class="score-wrap">
         <div class="score-big" id="final-score"></div>
@@ -268,81 +419,253 @@
         <div id="user-result" style="font-weight:600;margin-top:10px"></div>
 
         <div class="btn-row">
-          <button class="btn primary" onclick="restartQuiz()">New Quiz</button>
-          <button class="btn secondary" onclick="toggleReview()">Review Answers</button>
-          <button class="btn secondary" onclick="toggleHistoryDropdown()">
-            Score Dashboard ▼
+          <button class="btn primary" type="button" onclick="restartQuiz()">New Quiz</button>
+          <button class="btn secondary" id="review-toggle-btn" type="button" onclick="toggleReview()">Hide Answers</button>
+          <button class="btn secondary" id="result-history-toggle-btn" type="button" onclick="toggleResultHistoryDropdown()">
+            Score Dashboard v
           </button>
         </div>
       </div>
 
-      <div id="review-section" class="hidden"></div>
+      <div class="result-note" id="result-note"></div>
 
-      <div id="history-dropdown" class="history-dropdown hidden">
-        <div id="history-list"></div>
+      <h2 class="review-title">Answer Review</h2>
+      <div id="review-section"></div>
+
+      <div id="result-history-dropdown" class="history-dropdown hidden">
+        <div id="result-history-list"></div>
       </div>
     </div>
-
   </div>
 
   <script>
-    const questions = [
-      {
-        question: "Choose the correct sentence:",
-        options: ["She go to school.", "She goes to school.", "She going to school.", "She gone to school."],
-        answer: 1
-      },
-      {
-        question: "Which is a pronoun?",
-        options: ["Table", "She", "Run", "Happy"],
-        answer: 1
-      },
-      {
-        question: "Choose the correct article:",
-        options: ["a apple", "an apple", "the apple", "apple"],
-        answer: 1
-      },
-      {
-        question: "Choose correct tense:",
-        options: ["I have ate.", "I have eaten.", "I has eaten.", "I eating."],
-        answer: 1
-      },
-      {
-        question: "Identify the adjective:",
-        options: ["Quickly", "Beautiful", "Run", "Loudly"],
-        answer: 1
-      },
-      {
-        question: "Correct sentence:",
-        options: ["They is playing.", "They are playing.", "They am playing.", "They be playing."],
-        answer: 1
-      },
-      {
-        question: "Choose correct preposition:",
-        options: ["He is good in math.", "He is good at math.", "He is good on math.", "He is good by math."],
-        answer: 1
-      },
-      {
-        question: "Choose the correct modal:",
-        options: ["You must to go.", "You must go.", "You must going.", "You must goes."],
-        answer: 1
-      },
-      {
-        question: "Who wrote Hamlet?",
-        options: ["Jane Austen", "William Shakespeare", "Charles Dickens", "George Orwell"],
-        answer: 1
-      },
-      {
-        question: "What is the plural of child?",
-        options: ["Childs", "Children", "Childes", "Child"],
-        answer: 1
-      }
+    const STORAGE_KEY = "aimsEnglishQuizHistory";
+    const QUIZ_SIZE = 10;
+    const SPECIAL_PER_QUIZ = 3;
+    const TIMER_SECONDS = 60;
+
+    const regularSetA = [
+      ["Choose the correct sentence:", "She go to school.|She goes to school.|She going to school.|She gone to school.", 1],
+      ["Which is a pronoun?", "Table|She|Run|Happy", 1],
+      ["Choose the correct article:", "a apple|an apple|the apple|apple", 1],
+      ["Choose the correct tense:", "I have ate.|I have eaten.|I has eaten.|I eating.", 1],
+      ["Identify the adjective:", "Quickly|Beautiful|Run|Loudly", 1],
+      ["Correct sentence:", "They is playing.|They are playing.|They am playing.|They be playing.", 1],
+      ["Choose the correct preposition:", "He is good in math.|He is good at math.|He is good on math.|He is good by math.", 1],
+      ["Choose the correct modal:", "You must to go.|You must go.|You must going.|You must goes.", 1],
+      ["Who wrote Hamlet?", "Jane Austen|William Shakespeare|Charles Dickens|George Orwell", 1],
+      ["What is the plural of child?", "Childs|Children|Childes|Child", 1],
+      ["What is the past tense of go?", "goed|gone|went|going", 2],
+      ["Neither Ali nor his friends ___ ready.", "is|was|are|be", 2],
+      ["Which word is an adverb?", "careful|carefully|care|caring", 1],
+      ["Choose the correct reported speech:", "He said that he was tired.|He said that I am tired.|He said he tired.|He says that he was tired.", 0],
+      ["Choose the passive voice sentence:", "They completed the work on time.|The work completed on time.|The work was completed on time.|The work has complete on time.", 2],
+      ["What is the comparative form of good?", "gooder|better|best|more good", 1],
+      ["She has lived here ___ 2018.", "since|for|from|by", 0],
+      ["I prefer tea ___ coffee.", "than|with|to|over", 2],
+      ["If I ___ you, I would apologize.", "am|were|was|be", 1],
+      ["The book, along with the pens, ___ on the table.", "is|are|were|have", 0],
+      ["Hardly had he arrived ___ it started raining.", "than|then|when|and", 2],
+      ["Each of the students ___ a locker.", "have|having|has|are", 2],
+      ["Choose the sentence with correct punctuation:", "Lets eat, Grandma.|Let's eat Grandma.|Let's eat, Grandma.|Lets eat Grandma.", 2],
+      ["Choose a synonym for rapid.", "slow|swift|gentle|unclear", 1],
+      ["Choose an antonym for scarce.", "plentiful|empty|thin|rare", 0]
     ];
 
+    const regularSetB = [
+      ["She asked me ___ I could help.", "that|whether|which|whose", 1],
+      ["No sooner did he speak ___ everyone laughed.", "when|than|then|because", 1],
+      ["By the time we arrived, the film ___.", "starts|started|had started|has started", 2],
+      ["Choose the correct article:", "a honest man|an honest man|the honest man|honest man", 1],
+      ["Which word is a conjunction?", "swiftly|under|although|singer", 2],
+      ["Choose the sentence with the correct apostrophe:", "The childrens toys were everywhere.|The children's toys were everywhere.|The childrens' toys were everywhere.|The childrens toys were everywhere.", 1],
+      ["Neither the teacher nor the principal ___ available.", "were|was|be|are", 1],
+      ["I am looking forward to ___ from you.", "hear|hearing|heard|be hear", 1],
+      ["She speaks English ___ than her brother.", "good|best|better|well", 2],
+      ["What is the plural of criterion?", "criterions|criteriones|criteria|criterias", 2],
+      ["We were tired, ___ we continued working.", "so|because|yet|unless", 2],
+      ["He succeeded ___ hard work.", "through|between|under|across", 0],
+      ["I wish I ___ taller.", "am|was|were|be", 2],
+      ["There is ___ milk left in the fridge.", "many|a few|little|several", 2],
+      ["Which word is a noun?", "honesty|honest|honestly|honorable", 0],
+      ["Choose the correct question tag:", "You're coming, are you?|You're coming, aren't you?|You're coming, won't you?|You're coming, do you?", 1],
+      ["If it rains tomorrow, we ___ stay home.", "would|will|would have|had", 1],
+      ["She has been working here ___ five years.", "since|from|for|at", 2],
+      ["He ran so fast that no one could keep ___ him.", "up with|on with|in with|over with", 0],
+      ["Which sentence is in the future continuous tense?", "I travel tomorrow.|I will travel tomorrow.|I will be traveling tomorrow.|I traveled tomorrow.", 2],
+      ["Choose the correct spelling:", "accomodation|accommodation|acommodation|accommadation", 1],
+      ["The news ___ surprising.", "were|are|was|have been", 2],
+      ["One of my friends ___ coming tonight.", "are|is|were|have", 1],
+      ["He denied ___ the money.", "to steal|steal|stealing|stolen", 2],
+      ["The teacher made the students ___ quietly.", "sitting|sit|to sit|sat", 1]
+    ];
+
+    const regularSetC = [
+      ["Choose the sentence that uses a semicolon correctly:", "I wanted to leave; however, it was too late.|I wanted; to leave however it was too late.|I wanted to leave however; it was too late.|I wanted to; leave however it was too late.", 0],
+      ["Choose the antonym of expand.", "stretch|increase|contract|inflate", 2],
+      ["She is married ___ a doctor.", "with|to|for|by", 1],
+      ["I would rather you ___ now.", "leave|left|will leave|have left", 1],
+      ["He is responsible ___ managing the team.", "to|of|for|with", 2],
+      ["Choose the correct relative pronoun:", "The woman which called earlier is my aunt.|The woman whom called earlier is my aunt.|The woman who called earlier is my aunt.|The woman whose called earlier is my aunt.", 2],
+      ["I have not seen him ___ Monday.", "for|since|from|by", 1],
+      ["Had I known, I ___ earlier.", "would arrive|will arrive|would have arrived|am arriving", 2],
+      ["The room needs ___.", "paint|painting|to painted|painted", 1],
+      ["Choose the correct sentence:", "Less people attended the meeting than expected.|Fewer people attended the meeting than expected.|Few people attended than expected.|Fewer people attended then expected.", 1],
+      ["He is interested ___ learning Arabic.", "at|to|in|with", 2],
+      ["This is the most interesting book I ___ read.", "ever|have ever|had ever|am ever", 1],
+      ["Choose the correctly punctuated direct speech:", "She said I am ready.|She said, I am ready.|She said, 'I am ready.'|She said 'I am ready'.", 2],
+      ["A person who compiles a dictionary is called a ___.", "biographer|lexicographer|editorial|translator", 1],
+      ["Choose the antonym of victory.", "defeat|success|advance|celebration", 0],
+      ["Neither of the answers ___ correct.", "are|is|were|have", 1],
+      ["I prefer walking to ___ in traffic.", "sit|sitting|sat|to sit", 1],
+      ["She is used to ___ early.", "wake|woke|waking|to wake", 2],
+      ["He apologized ___ being late.", "of|to|for|with", 2],
+      ["Not only the players but also the coach ___ excited.", "were|are|was|have been", 2],
+      ["The meeting was postponed ___ the storm.", "because|because of|although|despite", 1],
+      ["If she had studied harder, she ___ the exam.", "would pass|would have passed|will pass|passed", 1],
+      ["Which word is an adjective?", "resilience|resilient|resiliently|resist", 1],
+      ["We have plenty ___ time.", "in|of|for|to", 1],
+      ["He insisted that she ___ present.", "is|was|be|has been", 2]
+    ];
+
+    const regularSetD = [
+      ["The furniture ___ delivered yesterday.", "were|are|was|have", 2],
+      ["I will call you as soon as I ___ home.", "will get|got|get|gets", 2],
+      ["He has a talent ___ storytelling.", "to|for|at|on", 1],
+      ["What does the idiom 'once in a blue moon' mean?", "very often|rarely|with anger|at night", 1],
+      ["She was accused ___ cheating.", "for|with|at|of", 3],
+      ["Choose the sentence that uses affect correctly:", "The weather may affect our plans.|The weather may effect our plans.|The weather may affected our plans.|The weather may affecting our plans.", 0],
+      ["He would have helped if you ___ him.", "ask|asked|had asked|have asked", 2],
+      ["The poem was written ___ John Keats.", "from|with|by|to", 2],
+      ["Choose the antonym of generous.", "kind|helpful|stingy|friendly", 2],
+      ["Choose the correct word:", "There house is bigger than ours.|Their house is bigger than ours.|They're house is bigger than ours.|Them house is bigger than ours.", 1],
+      ["It is high time we ___ home.", "go|went|gone|are going", 1],
+      ["Choose the correct question tag:", "She can sing, can she?|She can sing, can't she?|She can sing, doesn't she?|She can sing, won't she?", 1],
+      ["No one knows where he ___.", "is|are|be|were", 0],
+      ["He is capable ___ solving the problem.", "to|for|of|with", 2],
+      ["The police ___ investigating the case.", "is|was|are|has", 2],
+      ["Which word is a preposition?", "beneath|bravely|bright|builder", 0],
+      ["If only I ___ more free time.", "have|had|will have|am having", 1],
+      ["The book was so ___ that I could not put it down.", "engaging|engaged|engage|engages", 0],
+      ["We discussed the matter ___ detail.", "with|at|in|on", 2],
+      ["He said he ___ never been there before.", "has|had|have|was", 1],
+      ["Choose the correct sentence:", "Neither of the boys were absent.|Neither boys was absent.|Neither of the boys was absent.|Neither of boys were absent.", 2],
+      ["She succeeded in spite ___ the difficulties.", "with|of|from|for", 1],
+      ["Choose the antonym of ancient.", "historic|modern|timeless|old", 1],
+      ["By next year, she ___ her degree.", "will complete|completes|will have completed|had completed", 2],
+      ["He is taller ___ his cousin.", "to|than|from|with", 1]
+    ];
+
+    const specialRecords = [
+      ["Choose the correct inversion:", "Seldom I have seen such discipline.|Seldom have I seen such discipline.|Seldom I saw such discipline.|Seldom did have I seen such discipline.", 1],
+      ["Complete the sentence correctly: No sooner ___ the announcement than the phones began ringing.", "did they make|they made|had they made|have they made", 2],
+      ["Choose the correct subjunctive form:", "The judge demanded that the witness answers immediately.|The judge demanded that the witness answer immediately.|The judge demanded that the witness answered immediately.|The judge demanded that the witness answering immediately.", 1],
+      ["Complete the sentence correctly: Only after the manuscript was published ___ how groundbreaking it was.", "critics realized|did critics realize|critics had realized|have critics realized", 1],
+      ["Choose the best option: The proposal is worth ___ despite the risks.", "consider|to consider|considering|considered", 2],
+      ["Choose the correct sentence:", "Each of the reports, together with the appendix, are on the chair.|Each of the reports, together with the appendix, is on the chair.|Each of the reports, together with the appendix, were on the chair.|Each of the reports, together with the appendix, have been on the chair.", 1],
+      ["Complete the sentence correctly: She would sooner resign than ___ the figures.", "falsified|to falsify|falsify|falsifying", 2],
+      ["Choose the correct inversion:", "So complex the case was that even the experts disagreed.|So complex was the case that even the experts disagreed.|So was complex the case that even the experts disagreed.|So complex the case had been that even the experts disagreed.", 1],
+      ["Complete the sentence correctly: Not until the data were rechecked ___ the error.", "we detected|did we detect|have we detected|we had detected", 1],
+      ["Choose the best option: He talks as though he ___ everything.", "knows|knew|has known|will know", 1],
+      ["Choose the correct sentence:", "The committee recommended that the policy is revised immediately.|The committee recommended that the policy was revised immediately.|The committee recommended that the policy be revised immediately.|The committee recommended that the policy revised immediately.", 2],
+      ["Choose the best word: The professor's comments were so ___ that several interpretations remained possible.", "equivocal|transparent|definitive|literal", 0]
+    ];
+
+    function buildPool(records, difficulty) {
+      return records.map(([question, optionString, answer]) => ({
+        question,
+        options: optionString.split("|"),
+        answer,
+        difficulty
+      }));
+    }
+
+    const regularQuestionPool = buildPool(
+      [...regularSetA, ...regularSetB, ...regularSetC, ...regularSetD],
+      "Regular"
+    );
+    const specialQuestionPool = buildPool(specialRecords, "Special");
+
+    let questions = [];
     let currentQuestion = 0;
     let selectedAnswers = [];
     let currentUser = "";
-    let scoreHistory = [];
+    let scoreHistory = loadHistory();
+    let timeRemaining = TIMER_SECONDS;
+    let timerInterval = null;
+    let quizFinished = false;
+
+    function loadHistory() {
+      try {
+        const storedHistory = localStorage.getItem(STORAGE_KEY);
+        return storedHistory ? JSON.parse(storedHistory) : [];
+      } catch (error) {
+        console.error("Unable to load score history:", error);
+        return [];
+      }
+    }
+
+    function saveHistory() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(scoreHistory));
+      } catch (error) {
+        console.error("Unable to save score history:", error);
+      }
+    }
+
+    function shuffleArray(items) {
+      const shuffled = [...items];
+
+      for (let index = shuffled.length - 1; index > 0; index--) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+      }
+
+      return shuffled;
+    }
+
+    function buildQuizQuestions() {
+      const regularCount = QUIZ_SIZE - SPECIAL_PER_QUIZ;
+      const regularSelection = shuffleArray(regularQuestionPool).slice(0, regularCount);
+      const specialSelection = shuffleArray(specialQuestionPool).slice(0, SPECIAL_PER_QUIZ);
+      return shuffleArray([...regularSelection, ...specialSelection]);
+    }
+
+    function answeredCount() {
+      return selectedAnswers.filter(answer => answer !== undefined).length;
+    }
+
+    function formatTime(totalSeconds) {
+      const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+      const seconds = String(totalSeconds % 60).padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+
+    function updateTimerDisplay() {
+      const timerDisplay = document.getElementById("timer-display");
+      timerDisplay.textContent = `Time Left ${formatTime(timeRemaining)}`;
+      timerDisplay.classList.toggle("warning", timeRemaining <= 15);
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timeRemaining = TIMER_SECONDS;
+      updateTimerDisplay();
+
+      timerInterval = setInterval(() => {
+        timeRemaining -= 1;
+
+        if (timeRemaining <= 0) {
+          timeRemaining = 0;
+          updateTimerDisplay();
+          clearInterval(timerInterval);
+          showResult(true);
+          return;
+        }
+
+        updateTimerDisplay();
+      }, 1000);
+    }
 
     function beginQuiz() {
       const name = document.getElementById("user-name").value.trim();
@@ -354,11 +677,19 @@
 
       currentUser = name;
       currentQuestion = 0;
-      selectedAnswers = [];
+      questions = buildQuizQuestions();
+      selectedAnswers = new Array(questions.length);
+      quizFinished = false;
 
       document.getElementById("intro-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.add("hidden");
       document.getElementById("quiz-screen").classList.remove("hidden");
+      document.getElementById("quiz-user").textContent = currentUser;
+      document.getElementById("helper-text").textContent = "";
+      document.getElementById("intro-history-dropdown").classList.add("hidden");
+      document.getElementById("intro-history-toggle-btn").textContent = "Score Dashboard v";
 
+      startTimer();
       loadQuestion();
     }
 
@@ -367,113 +698,91 @@
 
       document.getElementById("q-number").textContent =
         `Question ${currentQuestion + 1} of ${questions.length}`;
-
       document.getElementById("question-text").textContent = q.question;
-
       document.getElementById("progress-fill").style.width =
         `${((currentQuestion + 1) / questions.length) * 100}%`;
+      document.getElementById("answered-count").textContent =
+        `Answered ${answeredCount()}/${questions.length}`;
+      document.getElementById("next-btn").textContent =
+        currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next";
+
+      document.getElementById("question-badges").innerHTML = `
+        <span class="meta-chip ${q.difficulty === "Special" ? "special" : ""}">${q.difficulty}</span>
+        <span class="meta-chip">No Backtracking</span>
+      `;
 
       const optionsContainer = document.getElementById("options-container");
       optionsContainer.innerHTML = "";
 
       q.options.forEach((option, index) => {
-        const div = document.createElement("div");
-        div.className = "option";
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "option";
 
         if (selectedAnswers[currentQuestion] === index) {
-          div.classList.add("selected");
+          button.classList.add("selected");
         }
 
-        div.textContent = option;
-
-        div.onclick = () => {
+        button.textContent = option;
+        button.onclick = () => {
           selectedAnswers[currentQuestion] = index;
+          document.getElementById("helper-text").textContent = "";
           loadQuestion();
         };
 
-        optionsContainer.appendChild(div);
+        optionsContainer.appendChild(button);
       });
     }
 
     function nextQuestion() {
+      if (selectedAnswers[currentQuestion] === undefined) {
+        document.getElementById("helper-text").textContent = "Please select an answer before continuing.";
+        return;
+      }
+
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         loadQuestion();
       } else {
-        showResult();
+        showResult(false);
       }
     }
 
-    function previousQuestion() {
-      if (currentQuestion > 0) {
-        currentQuestion--;
-        loadQuestion();
-      }
-    }
-
-    function showResult() {
+    function calculateScore() {
       let score = 0;
 
-      questions.forEach((q, index) => {
-        if (selectedAnswers[index] === q.answer) {
+      questions.forEach((question, index) => {
+        if (selectedAnswers[index] === question.answer) {
           score++;
         }
       });
 
-      scoreHistory.push({
-        name: currentUser,
-        score: score,
-        date: new Date().toLocaleString()
-      });
-
-      document.getElementById("quiz-screen").classList.add("hidden");
-      document.getElementById("result-screen").classList.remove("hidden");
-
-      document.getElementById("final-score").textContent = `${score}/${questions.length}`;
-
-      if (score >= 8) {
-        document.getElementById("score-message").textContent = "Excellent!";
-      } else if (score >= 5) {
-        document.getElementById("score-message").textContent = "Good effort!";
-      } else {
-        document.getElementById("score-message").textContent = "Keep practicing!";
-      }
-
-      document.getElementById("user-result").textContent =
-        `${currentUser} scored ${score}/${questions.length} in the last result section.`;
+      return score;
     }
 
-    function toggleReview() {
-      const reviewSection = document.getElementById("review-section");
-
-      if (!reviewSection.classList.contains("hidden")) {
-        reviewSection.classList.add("hidden");
-        return;
-      }
-
-      reviewSection.classList.remove("hidden");
-
-      reviewSection.innerHTML = questions.map((q, index) => {
-        const isCorrect = selectedAnswers[index] === q.answer;
+    function renderReview() {
+      document.getElementById("review-section").innerHTML = questions.map((question, index) => {
+        const isCorrect = selectedAnswers[index] === question.answer;
+        const selectedAnswer = selectedAnswers[index];
 
         return `
           <div class="review-item">
-            <div class="review-q">${index + 1}. ${q.question}</div>
-            <div class="tag ${isCorrect ? 'correct' : 'wrong'}">
-              ${isCorrect ? 'Correct' : 'Wrong'}
+            <div class="review-q">${index + 1}. ${question.question}</div>
+            <div class="tag ${isCorrect ? "correct" : "wrong"}">
+              ${isCorrect ? "Correct" : "Wrong"}
             </div>
-            <div>Correct Answer: <strong>${q.options[q.answer]}</strong></div>
-            <div>Your Answer: <strong>${selectedAnswers[index] !== undefined ? q.options[selectedAnswers[index]] : 'Not Answered'}</strong></div>
+            <div class="meta-chip ${question.difficulty === "Special" ? "special" : ""}">
+              ${question.difficulty} Question
+            </div>
+            <div style="margin-top:10px">Correct Answer: <strong>${question.options[question.answer]}</strong></div>
+            <div style="margin-top:6px">Your Answer: <strong>${selectedAnswer !== undefined ? question.options[selectedAnswer] : "Not Answered"}</strong></div>
           </div>
         `;
       }).join("");
     }
 
-    function toggleHistoryDropdown() {
-      const dropdown = document.getElementById("history-dropdown");
-      const historyList = document.getElementById("history-list");
-
-      dropdown.classList.toggle("hidden");
+    function renderHistory(targetId) {
+      const historyList = document.getElementById(targetId);
 
       if (scoreHistory.length === 0) {
         historyList.innerHTML = "<p>No score history available yet.</p>";
@@ -483,24 +792,122 @@
       historyList.innerHTML = scoreHistory
         .slice()
         .reverse()
-        .map((item, index) => `
+        .map((item) => `
           <div class="history-item">
             <strong>${item.name}</strong><br>
-            Score: ${item.score}/10
+            Score: ${item.score}/${item.total}
             <div class="history-date">${item.date}</div>
           </div>
         `)
         .join("");
     }
 
-    function restartQuiz() {
-      document.getElementById("result-screen").classList.add("hidden");
-      document.getElementById("review-section").classList.add("hidden");
-      document.getElementById("history-dropdown").classList.add("hidden");
-      document.getElementById("intro-screen").classList.remove("hidden");
-      document.getElementById("user-name").value = "";
-    }
-  </script>
+    function toggleDropdown(dropdownId, listId, buttonId) {
+      const dropdown = document.getElementById(dropdownId);
+      const button = document.getElementById(buttonId);
+      const isOpening = dropdown.classList.contains("hidden");
 
+      dropdown.classList.toggle("hidden");
+      button.textContent = isOpening ? "Score Dashboard ^" : "Score Dashboard v";
+
+      if (isOpening) {
+        renderHistory(listId);
+      }
+    }
+
+    function toggleIntroHistoryDropdown() {
+      toggleDropdown("intro-history-dropdown", "intro-history-list", "intro-history-toggle-btn");
+    }
+
+    function toggleResultHistoryDropdown() {
+      toggleDropdown("result-history-dropdown", "result-history-list", "result-history-toggle-btn");
+    }
+
+    function showResult(timeExpired) {
+      if (quizFinished) {
+        return;
+      }
+
+      quizFinished = true;
+      clearInterval(timerInterval);
+
+      const score = calculateScore();
+
+      scoreHistory.push({
+        name: currentUser,
+        score,
+        total: questions.length,
+        date: new Date().toLocaleString()
+      });
+      saveHistory();
+
+      document.getElementById("quiz-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.remove("hidden");
+      document.getElementById("final-score").textContent = `${score}/${questions.length}`;
+
+      if (timeExpired) {
+        document.getElementById("score-message").textContent = "Time is up.";
+      } else if (score >= 8) {
+        document.getElementById("score-message").textContent = "Excellent work.";
+      } else if (score >= 5) {
+        document.getElementById("score-message").textContent = "Good effort. Keep pushing.";
+      } else {
+        document.getElementById("score-message").textContent = "Keep practicing. These questions are intentionally tough.";
+      }
+
+      document.getElementById("user-result").textContent =
+        `${currentUser} scored ${score}/${questions.length} on this attempt.`;
+      document.getElementById("result-note").textContent = timeExpired
+        ? "The quiz auto-submitted when the 1-minute timer ended. Unanswered questions were counted as incorrect."
+        : "All correct answers are shown below. Each attempt includes 7 regular questions and 3 special challenge questions.";
+      document.getElementById("review-section").classList.remove("hidden");
+      document.getElementById("review-toggle-btn").textContent = "Hide Answers";
+      document.getElementById("result-history-dropdown").classList.add("hidden");
+      document.getElementById("result-history-toggle-btn").textContent = "Score Dashboard v";
+
+      renderReview();
+      renderHistory("intro-history-list");
+      renderHistory("result-history-list");
+    }
+
+    function toggleReview() {
+      const reviewSection = document.getElementById("review-section");
+      const button = document.getElementById("review-toggle-btn");
+      const isHidden = reviewSection.classList.contains("hidden");
+
+      reviewSection.classList.toggle("hidden");
+      button.textContent = isHidden ? "Hide Answers" : "Show Answers";
+    }
+
+    function restartQuiz() {
+      clearInterval(timerInterval);
+
+      currentQuestion = 0;
+      selectedAnswers = [];
+      currentUser = "";
+      questions = [];
+      timeRemaining = TIMER_SECONDS;
+      quizFinished = false;
+
+      document.getElementById("result-screen").classList.add("hidden");
+      document.getElementById("quiz-screen").classList.add("hidden");
+      document.getElementById("intro-screen").classList.remove("hidden");
+      document.getElementById("intro-history-dropdown").classList.add("hidden");
+      document.getElementById("result-history-dropdown").classList.add("hidden");
+      document.getElementById("user-name").value = "";
+      document.getElementById("helper-text").textContent = "";
+      document.getElementById("intro-history-toggle-btn").textContent = "Score Dashboard v";
+      document.getElementById("result-history-toggle-btn").textContent = "Score Dashboard v";
+      document.getElementById("review-section").classList.remove("hidden");
+      document.getElementById("review-toggle-btn").textContent = "Hide Answers";
+      document.getElementById("timer-display").textContent = "Time Left 01:00";
+      document.getElementById("timer-display").classList.remove("warning");
+      document.getElementById("progress-fill").style.width = "0%";
+      document.getElementById("question-badges").innerHTML = "";
+      renderHistory("intro-history-list");
+    }
+
+    renderHistory("intro-history-list");
+  </script>
 </body>
 </html>
