@@ -177,28 +177,6 @@
       line-height: 1.35;
     }
 
-    .question-badges {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .meta-chip {
-      display: inline-block;
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 12px;
-      font-weight: 700;
-      background: #e2e8f0;
-      color: #334155;
-    }
-
-    .meta-chip.special {
-      background: #fee2e2;
-      color: #991b1b;
-    }
-
     .option {
       width: 100%;
       border: 1px solid #cbd5e1;
@@ -331,6 +309,14 @@
       margin-top: 4px;
     }
 
+    .credit {
+      margin-top: 18px;
+      text-align: right;
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+    }
+
     @media (max-width: 640px) {
       .card {
         padding: 24px 18px;
@@ -383,6 +369,8 @@
       <div class="intro-note">
         Quiz rules: 1 minute for the full quiz, no going back to previous questions, and 3 difficult special questions are mixed into every attempt.
       </div>
+
+      <div class="credit">Developed By Md Mahmudul Hoque Khan</div>
     </div>
 
     <div id="quiz-screen" class="hidden">
@@ -398,7 +386,6 @@
 
       <div class="q-num" id="q-number"></div>
       <div class="q-text" id="question-text"></div>
-      <div class="question-badges" id="question-badges"></div>
 
       <div id="options-container"></div>
       <div class="helper-text" id="helper-text"></div>
@@ -419,7 +406,7 @@
         <div id="user-result" style="font-weight:600;margin-top:10px"></div>
 
         <div class="btn-row">
-          <button class="btn primary" type="button" onclick="restartQuiz()">New Quiz</button>
+          <button class="btn primary" type="button" onclick="restartQuiz()">Restart Quiz</button>
           <button class="btn secondary" id="review-toggle-btn" type="button" onclick="toggleReview()">Hide Answers</button>
           <button class="btn secondary" id="result-history-toggle-btn" type="button" onclick="toggleResultHistoryDropdown()">
             Score Dashboard v
@@ -706,11 +693,6 @@
       document.getElementById("next-btn").textContent =
         currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next";
 
-      document.getElementById("question-badges").innerHTML = `
-        <span class="meta-chip ${q.difficulty === "Special" ? "special" : ""}">${q.difficulty}</span>
-        <span class="meta-chip">No Backtracking</span>
-      `;
-
       const optionsContainer = document.getElementById("options-container");
       optionsContainer.innerHTML = "";
 
@@ -769,10 +751,7 @@
           <div class="review-item">
             <div class="review-q">${index + 1}. ${question.question}</div>
             <div class="tag ${isCorrect ? "correct" : "wrong"}">
-              ${isCorrect ? "Correct" : "Wrong"}
-            </div>
-            <div class="meta-chip ${question.difficulty === "Special" ? "special" : ""}">
-              ${question.difficulty} Question
+              ${isCorrect ? "✅ Correct" : "❌ Wrong"}
             </div>
             <div style="margin-top:10px">Correct Answer: <strong>${question.options[question.answer]}</strong></div>
             <div style="margin-top:6px">Your Answer: <strong>${selectedAnswer !== undefined ? question.options[selectedAnswer] : "Not Answered"}</strong></div>
@@ -903,7 +882,6 @@
       document.getElementById("timer-display").textContent = "Time Left 01:00";
       document.getElementById("timer-display").classList.remove("warning");
       document.getElementById("progress-fill").style.width = "0%";
-      document.getElementById("question-badges").innerHTML = "";
       renderHistory("intro-history-list");
     }
 
